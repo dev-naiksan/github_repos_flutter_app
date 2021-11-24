@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get_it/get_it.dart';
+import 'package:github_flutter_app/data/network/util/base_response.dart';
 import 'package:github_flutter_app/data/network/util/error_util.dart';
+import 'package:github_flutter_app/data/repository/base_repository.dart';
 import 'package:github_flutter_app/data/repository/repo/repo_repository.dart';
 import 'package:github_flutter_app/model/repo_model.dart';
 import 'package:github_flutter_app/ui/base/base_result.dart';
@@ -20,6 +22,10 @@ class RepoVM extends BaseVM {
 
   UiFailure? get failure => _failure;
 
+  List<Repo> _list = [];
+
+  List<Repo> get list => _list;
+
   RepoRepository repository = GetIt.I.get<RepoRepository>();
 
   RepoVM() {
@@ -34,9 +40,16 @@ class RepoVM extends BaseVM {
       _failure = null;
       _isLoading = true;
       notifyListeners();
-      final repos = await repository.fetchRepos(_page);
-      _page++;
-      _isOver = repos.isEmpty;
+      final result = await repository.fetchRepos(_page);
+      if (result.source == RepositoryResultSource.cached &&
+          result.data.isEmpty) {
+        _failure =
+            UiFailure(ErrorUtil.getApiError(ApiError(ErrorType.noConnection)));
+      } else {
+        _isOver = result.data.isEmpty;
+        _page++;
+      }
+      _list.addAll(result.data);
     } catch (e, stack) {
       _failure = UiFailure(ErrorUtil.getApiError(e));
       debugPrintStack(stackTrace: stack);

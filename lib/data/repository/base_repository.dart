@@ -8,3 +8,12 @@ abstract class BaseRepository {
   final DbClient dbClient = GetIt.I.get<DbClient>();
   final AppPreferences appPreferences = GetIt.I.get<AppPreferences>();
 }
+
+enum RepositoryResultSource { server, cached }
+
+class RepositoryResult<T> {
+  final T data;
+  final RepositoryResultSource source;
+
+  RepositoryResult(this.data, this.source);
+}

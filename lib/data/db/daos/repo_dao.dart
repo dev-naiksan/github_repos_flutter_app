@@ -21,7 +21,20 @@ class RepoDao extends DatabaseAccessor<DbClient> with _$RepoDaoMixin {
 
   Stream<List<RepoEntityData>> get repoStream {
     return (select(repoEntity)
-          ..orderBy([(t) => OrderingTerm(expression: t.name.lower(), mode: OrderingMode.asc)]))
+          ..orderBy([
+            (t) =>
+                OrderingTerm(expression: t.name.lower(), mode: OrderingMode.asc)
+          ]))
         .watch();
+  }
+
+  Future<List<RepoEntityData>> getRepos(int page, int limit) {
+    return (select(repoEntity)
+          ..orderBy([
+            (t) =>
+                OrderingTerm(expression: t.name.lower(), mode: OrderingMode.asc)
+          ])
+          ..limit(limit, offset: (page - 1) * limit))
+        .get();
   }
 }
