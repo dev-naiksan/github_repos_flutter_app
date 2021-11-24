@@ -24,6 +24,7 @@ dependencies:
   provider: ^5.0.0
   google_fonts: ^2.1.0
   another_flushbar: ^1.10.25
+  local_auth: ^1.1.8
 
 dev_dependencies:
   flutter_test:
