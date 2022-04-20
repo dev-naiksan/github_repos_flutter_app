@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:github_flutter_app/data/network/util/error_util.dart';
 import 'package:github_flutter_app/ui/repos/repo_vm.dart';
 import 'package:provider/provider.dart';
@@ -51,7 +50,7 @@ class _RepoScreenState extends State<RepoScreen> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(failure.message),
+            Text(ErrorUtil.getErrorMessageFromUiFailure(failure)),
             TextButton(
               onPressed: () {
                 model.fetchRepos();
@@ -122,7 +121,7 @@ class _RepoScreenState extends State<RepoScreen> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(model.failure?.message ?? "Some error occurred"),
+                Text(ErrorUtil.getErrorMessageFromUiFailure(model.failure!)),
                 TextButton(
                   onPressed: () {
                     model.fetchRepos();

@@ -3,12 +3,12 @@ import 'dart:async';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:github_flutter_app/data/network/util/error_util.dart';
 import 'package:github_flutter_app/data/repository/base_repository.dart';
 import 'package:github_flutter_app/model/base_model.dart';
 import 'package:github_flutter_app/utils/constants.dart';
 
-import 'base_result.dart';
+import '../../data/network/util/error_util.dart';
+import 'ui_result/ui_result.dart';
 
 abstract class BaseVM with ChangeNotifier {
   StreamSubscription? _internetConnectionSubscription;
@@ -95,12 +95,9 @@ abstract class PaginatedSearchListVM<A extends ListModel,
     try {
       final result = await get();
       _list.addAll(result);
-      print('Size: ${_list.length}');
       _isEnded = result.isEmpty;
-    } catch (e, stacktrace) {
-      print(e);
-      debugPrintStack(stackTrace: stacktrace);
-      _failure = UiFailure(ErrorUtil.getApiError(e));
+    } catch (e, stack) {
+      _failure = ErrorUtil.getUiFailureFromException(e, stack);
     } finally {
       _isLoading = false;
       notifyListeners();

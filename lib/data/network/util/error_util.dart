@@ -1,3 +1,6 @@
+import 'package:flutter/cupertino.dart';
+import 'package:github_flutter_app/ui/base/ui_result/ui_result.dart';
+
 import '../../../flavor_config.dart';
 import 'base_response.dart';
 
@@ -9,30 +12,33 @@ class ErrorUtil {
 
   static const VERSION_NOT_SUPPORTED = 'VERSION_NOT_SUPPORTED';
 
-  static String getApiError(error) {
+  static UiFailure<T> getUiFailureFromException<T>(
+      Object error, StackTrace stackTrace) {
     if (error is ApiError) {
-      return ErrorUtil.getErrorMessageForApiError(error);
+      return UiFailure(error.type, error.code);
     } else if (error is Exception) {
       if (FlavorConfig.isDevelopment()) {
-        return error.toString();
+        debugPrintStack(stackTrace: stackTrace);
       }
     }
-    return ErrorUtil.DEFAULT_ERROR_MESSAGE;
+    return UiFailure(ErrorType.unknown);
   }
 
-  static String getErrorMessageForApiError(ApiError apiError) {
-    switch (apiError.type) {
+  static String getErrorMessageFromTypeCode(ErrorType type, String? code) {
+    switch (type) {
       case ErrorType.timeout:
         return _TIMEOUT_ERROR_MESSAGE;
       case ErrorType.noConnection:
         return _NO_INTERNET_ERROR_MESSAGE;
       case ErrorType.apiFailure:
-        return _errorMessages[apiError.code] ??
-            apiError.message ??
-            DEFAULT_ERROR_MESSAGE;
+        return _errorMessages[code] ?? DEFAULT_ERROR_MESSAGE;
       default:
-        return apiError.message ?? DEFAULT_ERROR_MESSAGE;
+        return DEFAULT_ERROR_MESSAGE;
     }
+  }
+
+  static String getErrorMessageFromUiFailure(UiFailure uiFailure) {
+    return getErrorMessageFromTypeCode(uiFailure.type, uiFailure.code);
   }
 
   static Map<String, String> _errorMessages = {

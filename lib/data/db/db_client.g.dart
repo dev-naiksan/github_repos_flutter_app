@@ -235,30 +235,36 @@ class $RepoEntityTable extends RepoEntity
   final String? _alias;
   $RepoEntityTable(this._db, [this._alias]);
   final VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
   late final GeneratedColumn<int?> id = GeneratedColumn<int?>(
       'id', aliasedName, false,
-      typeName: 'INTEGER', requiredDuringInsert: false);
+      type: const IntType(), requiredDuringInsert: false);
   final VerificationMeta _nameMeta = const VerificationMeta('name');
+  @override
   late final GeneratedColumn<String?> name = GeneratedColumn<String?>(
       'name', aliasedName, false,
-      typeName: 'TEXT', requiredDuringInsert: true);
+      type: const StringType(), requiredDuringInsert: true);
   final VerificationMeta _descriptionMeta =
       const VerificationMeta('description');
+  @override
   late final GeneratedColumn<String?> description = GeneratedColumn<String?>(
       'description', aliasedName, false,
-      typeName: 'TEXT', requiredDuringInsert: true);
+      type: const StringType(), requiredDuringInsert: true);
   final VerificationMeta _issuesMeta = const VerificationMeta('issues');
+  @override
   late final GeneratedColumn<int?> issues = GeneratedColumn<int?>(
       'issues', aliasedName, false,
-      typeName: 'INTEGER', requiredDuringInsert: true);
+      type: const IntType(), requiredDuringInsert: true);
   final VerificationMeta _watchersMeta = const VerificationMeta('watchers');
+  @override
   late final GeneratedColumn<int?> watchers = GeneratedColumn<int?>(
       'watchers', aliasedName, false,
-      typeName: 'INTEGER', requiredDuringInsert: true);
+      type: const IntType(), requiredDuringInsert: true);
   final VerificationMeta _languageMeta = const VerificationMeta('language');
+  @override
   late final GeneratedColumn<String?> language = GeneratedColumn<String?>(
       'language', aliasedName, false,
-      typeName: 'TEXT', requiredDuringInsert: true);
+      type: const StringType(), requiredDuringInsert: true);
   @override
   List<GeneratedColumn> get $columns =>
       [id, name, description, issues, watchers, language];

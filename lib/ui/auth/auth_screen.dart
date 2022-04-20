@@ -1,11 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:github_flutter_app/ui/base/base_result.dart';
+import 'package:github_flutter_app/data/network/util/error_util.dart';
 import 'package:github_flutter_app/ui/repos/repo_screen.dart';
 import 'package:github_flutter_app/utils/functions.dart';
 import 'package:github_flutter_app/widgets/primary_button.dart';
 import 'package:provider/provider.dart';
 
+import '../../utils/constants.dart';
 import 'auth_vm.dart';
 
 class AuthScreen extends StatefulWidget {
@@ -67,14 +67,30 @@ class _AuthScreenState extends State<AuthScreen> {
   }
 
   void _submit() async {
+    final email = _emailController.text.trim();
+    final password = _passwordController.text.trim();
+    if (!isEmailValid(email)) {
+      showErrorFlushbar(context: context, message: 'Please enter valid email');
+      return;
+    }
+    if (password.length < AppConstants.PASSWORD_MIN_LENGTH) {
+      showErrorFlushbar(
+          context: context,
+          message:
+              'Password must be at least ${AppConstants.PASSWORD_MIN_LENGTH} characters long');
+      return;
+    }
+
     final model = Provider.of<AuthVM>(context, listen: false);
     final result =
         await model.login(_emailController.text, _passwordController.text);
-    if (result is UiSuccess) {
+    result.when(success: (data) {
       _navigateToDashboard();
-    } else if (result is UiFailure) {
-      showErrorFlushbar(context: context, message: result.message);
-    }
+    }, failure: (type, code) {
+      showErrorFlushbar(
+          context: context,
+          message: ErrorUtil.getErrorMessageFromTypeCode(type, code));
+    });
   }
 
   void _navigateToDashboard() {

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:github_flutter_app/data/network/util/error_util.dart';
 import 'package:github_flutter_app/model/base_model.dart';
 import 'package:github_flutter_app/values/dimen.dart';
 import 'package:github_flutter_app/widgets/no_data_widget.dart';
+import 'package:provider/provider.dart';
 
 import 'base_vm.dart';
 
@@ -47,7 +48,8 @@ class _ListContainerState<VM extends PaginatedSearchListVM>
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(model.listFailure?.message ?? ""),
+                Text(
+                    ErrorUtil.getErrorMessageFromUiFailure(model.listFailure!)),
                 TextButton(
                   child: Text('Retry'),
                   onPressed: model.retry,

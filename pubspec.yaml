@@ -25,6 +25,7 @@ dependencies:
   google_fonts: ^2.1.0
   another_flushbar: ^1.10.25
   local_auth: ^1.1.8
+  freezed: ^2.0.1
 
 dev_dependencies:
   flutter_test:
