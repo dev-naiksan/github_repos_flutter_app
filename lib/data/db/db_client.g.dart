@@ -2,11 +2,131 @@
 
 part of 'db_client.dart';
 
-// **************************************************************************
-// MoorGenerator
-// **************************************************************************
+// ignore_for_file: type=lint
+class $RepoEntityTable extends RepoEntity
+    with TableInfo<$RepoEntityTable, RepoEntityData> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
 
-// ignore_for_file: unnecessary_brace_in_string_interps, unnecessary_this
+  $RepoEntityTable(this.attachedDatabase, [this._alias]);
+
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<int> id = GeneratedColumn<int>(
+      'id', aliasedName, false,
+      type: DriftSqlType.int, requiredDuringInsert: false);
+  static const VerificationMeta _nameMeta = const VerificationMeta('name');
+  @override
+  late final GeneratedColumn<String> name = GeneratedColumn<String>(
+      'name', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _descriptionMeta =
+      const VerificationMeta('description');
+  @override
+  late final GeneratedColumn<String> description = GeneratedColumn<String>(
+      'description', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _issuesMeta = const VerificationMeta('issues');
+  @override
+  late final GeneratedColumn<int> issues = GeneratedColumn<int>(
+      'issues', aliasedName, false,
+      type: DriftSqlType.int, requiredDuringInsert: true);
+  static const VerificationMeta _watchersMeta =
+      const VerificationMeta('watchers');
+  @override
+  late final GeneratedColumn<int> watchers = GeneratedColumn<int>(
+      'watchers', aliasedName, false,
+      type: DriftSqlType.int, requiredDuringInsert: true);
+  static const VerificationMeta _languageMeta =
+      const VerificationMeta('language');
+  @override
+  late final GeneratedColumn<String> language = GeneratedColumn<String>(
+      'language', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+
+  @override
+  List<GeneratedColumn> get $columns =>
+      [id, name, description, issues, watchers, language];
+
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'repo_entity';
+
+  @override
+  VerificationContext validateIntegrity(Insertable<RepoEntityData> instance,
+      {bool isInserting = false}) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('name')) {
+      context.handle(
+          _nameMeta, name.isAcceptableOrUnknown(data['name']!, _nameMeta));
+    } else if (isInserting) {
+      context.missing(_nameMeta);
+    }
+    if (data.containsKey('description')) {
+      context.handle(
+          _descriptionMeta,
+          description.isAcceptableOrUnknown(
+              data['description']!, _descriptionMeta));
+    } else if (isInserting) {
+      context.missing(_descriptionMeta);
+    }
+    if (data.containsKey('issues')) {
+      context.handle(_issuesMeta,
+          issues.isAcceptableOrUnknown(data['issues']!, _issuesMeta));
+    } else if (isInserting) {
+      context.missing(_issuesMeta);
+    }
+    if (data.containsKey('watchers')) {
+      context.handle(_watchersMeta,
+          watchers.isAcceptableOrUnknown(data['watchers']!, _watchersMeta));
+    } else if (isInserting) {
+      context.missing(_watchersMeta);
+    }
+    if (data.containsKey('language')) {
+      context.handle(_languageMeta,
+          language.isAcceptableOrUnknown(data['language']!, _languageMeta));
+    } else if (isInserting) {
+      context.missing(_languageMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+
+  @override
+  RepoEntityData map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return RepoEntityData(
+      id: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}id'])!,
+      name: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}name'])!,
+      description: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}description'])!,
+      issues: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}issues'])!,
+      watchers: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}watchers'])!,
+      language: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}language'])!,
+    );
+  }
+
+  @override
+  $RepoEntityTable createAlias(String alias) {
+    return $RepoEntityTable(attachedDatabase, alias);
+  }
+}
+
 class RepoEntityData extends DataClass implements Insertable<RepoEntityData> {
   final int id;
   final String name;
@@ -14,30 +134,15 @@ class RepoEntityData extends DataClass implements Insertable<RepoEntityData> {
   final int issues;
   final int watchers;
   final String language;
-  RepoEntityData(
+
+  const RepoEntityData(
       {required this.id,
       required this.name,
       required this.description,
       required this.issues,
       required this.watchers,
       required this.language});
-  factory RepoEntityData.fromData(Map<String, dynamic> data, {String? prefix}) {
-    final effectivePrefix = prefix ?? '';
-    return RepoEntityData(
-      id: const IntType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}id'])!,
-      name: const StringType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}name'])!,
-      description: const StringType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}description'])!,
-      issues: const IntType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}issues'])!,
-      watchers: const IntType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}watchers'])!,
-      language: const StringType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}language'])!,
-    );
-  }
+
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
@@ -73,6 +178,7 @@ class RepoEntityData extends DataClass implements Insertable<RepoEntityData> {
       language: serializer.fromJson<String>(json['language']),
     );
   }
+
   @override
   Map<String, dynamic> toJson({ValueSerializer? serializer}) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
@@ -101,6 +207,7 @@ class RepoEntityData extends DataClass implements Insertable<RepoEntityData> {
         watchers: watchers ?? this.watchers,
         language: language ?? this.language,
       );
+
   @override
   String toString() {
     return (StringBuffer('RepoEntityData(')
@@ -117,6 +224,7 @@ class RepoEntityData extends DataClass implements Insertable<RepoEntityData> {
   @override
   int get hashCode =>
       Object.hash(id, name, description, issues, watchers, language);
+
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -136,6 +244,7 @@ class RepoEntityCompanion extends UpdateCompanion<RepoEntityData> {
   final Value<int> issues;
   final Value<int> watchers;
   final Value<String> language;
+
   const RepoEntityCompanion({
     this.id = const Value.absent(),
     this.name = const Value.absent(),
@@ -144,6 +253,7 @@ class RepoEntityCompanion extends UpdateCompanion<RepoEntityData> {
     this.watchers = const Value.absent(),
     this.language = const Value.absent(),
   });
+
   RepoEntityCompanion.insert({
     this.id = const Value.absent(),
     required String name,
@@ -156,6 +266,7 @@ class RepoEntityCompanion extends UpdateCompanion<RepoEntityData> {
         issues = Value(issues),
         watchers = Value(watchers),
         language = Value(language);
+
   static Insertable<RepoEntityData> custom({
     Expression<int>? id,
     Expression<String>? name,
@@ -229,112 +340,15 @@ class RepoEntityCompanion extends UpdateCompanion<RepoEntityData> {
   }
 }
 
-class $RepoEntityTable extends RepoEntity
-    with TableInfo<$RepoEntityTable, RepoEntityData> {
-  final GeneratedDatabase _db;
-  final String? _alias;
-  $RepoEntityTable(this._db, [this._alias]);
-  final VerificationMeta _idMeta = const VerificationMeta('id');
-  @override
-  late final GeneratedColumn<int?> id = GeneratedColumn<int?>(
-      'id', aliasedName, false,
-      type: const IntType(), requiredDuringInsert: false);
-  final VerificationMeta _nameMeta = const VerificationMeta('name');
-  @override
-  late final GeneratedColumn<String?> name = GeneratedColumn<String?>(
-      'name', aliasedName, false,
-      type: const StringType(), requiredDuringInsert: true);
-  final VerificationMeta _descriptionMeta =
-      const VerificationMeta('description');
-  @override
-  late final GeneratedColumn<String?> description = GeneratedColumn<String?>(
-      'description', aliasedName, false,
-      type: const StringType(), requiredDuringInsert: true);
-  final VerificationMeta _issuesMeta = const VerificationMeta('issues');
-  @override
-  late final GeneratedColumn<int?> issues = GeneratedColumn<int?>(
-      'issues', aliasedName, false,
-      type: const IntType(), requiredDuringInsert: true);
-  final VerificationMeta _watchersMeta = const VerificationMeta('watchers');
-  @override
-  late final GeneratedColumn<int?> watchers = GeneratedColumn<int?>(
-      'watchers', aliasedName, false,
-      type: const IntType(), requiredDuringInsert: true);
-  final VerificationMeta _languageMeta = const VerificationMeta('language');
-  @override
-  late final GeneratedColumn<String?> language = GeneratedColumn<String?>(
-      'language', aliasedName, false,
-      type: const StringType(), requiredDuringInsert: true);
-  @override
-  List<GeneratedColumn> get $columns =>
-      [id, name, description, issues, watchers, language];
-  @override
-  String get aliasedName => _alias ?? 'repo_entity';
-  @override
-  String get actualTableName => 'repo_entity';
-  @override
-  VerificationContext validateIntegrity(Insertable<RepoEntityData> instance,
-      {bool isInserting = false}) {
-    final context = VerificationContext();
-    final data = instance.toColumns(true);
-    if (data.containsKey('id')) {
-      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
-    }
-    if (data.containsKey('name')) {
-      context.handle(
-          _nameMeta, name.isAcceptableOrUnknown(data['name']!, _nameMeta));
-    } else if (isInserting) {
-      context.missing(_nameMeta);
-    }
-    if (data.containsKey('description')) {
-      context.handle(
-          _descriptionMeta,
-          description.isAcceptableOrUnknown(
-              data['description']!, _descriptionMeta));
-    } else if (isInserting) {
-      context.missing(_descriptionMeta);
-    }
-    if (data.containsKey('issues')) {
-      context.handle(_issuesMeta,
-          issues.isAcceptableOrUnknown(data['issues']!, _issuesMeta));
-    } else if (isInserting) {
-      context.missing(_issuesMeta);
-    }
-    if (data.containsKey('watchers')) {
-      context.handle(_watchersMeta,
-          watchers.isAcceptableOrUnknown(data['watchers']!, _watchersMeta));
-    } else if (isInserting) {
-      context.missing(_watchersMeta);
-    }
-    if (data.containsKey('language')) {
-      context.handle(_languageMeta,
-          language.isAcceptableOrUnknown(data['language']!, _languageMeta));
-    } else if (isInserting) {
-      context.missing(_languageMeta);
-    }
-    return context;
-  }
-
-  @override
-  Set<GeneratedColumn> get $primaryKey => {id};
-  @override
-  RepoEntityData map(Map<String, dynamic> data, {String? tablePrefix}) {
-    return RepoEntityData.fromData(data,
-        prefix: tablePrefix != null ? '$tablePrefix.' : null);
-  }
-
-  @override
-  $RepoEntityTable createAlias(String alias) {
-    return $RepoEntityTable(_db, alias);
-  }
-}
-
 abstract class _$DbClient extends GeneratedDatabase {
-  _$DbClient(QueryExecutor e) : super(SqlTypeSystem.defaultInstance, e);
+  _$DbClient(QueryExecutor e) : super(e);
   late final $RepoEntityTable repoEntity = $RepoEntityTable(this);
   late final RepoDao repoDao = RepoDao(this as DbClient);
+
   @override
-  Iterable<TableInfo> get allTables => allSchemaEntities.whereType<TableInfo>();
+  Iterable<TableInfo<Table, Object?>> get allTables =>
+      allSchemaEntities.whereType<TableInfo<Table, Object?>>();
+
   @override
   List<DatabaseSchemaEntity> get allSchemaEntities => [repoEntity];
 }

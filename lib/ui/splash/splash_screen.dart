@@ -56,9 +56,11 @@ class _SplashScreenState extends State<SplashScreen> {
     try {
       return await auth.authenticate(
         localizedReason: 'Scan your fingerprint to authenticate',
-        useErrorDialogs: true,
-        stickyAuth: true,
-        biometricOnly: true,
+        options: AuthenticationOptions(
+          useErrorDialogs: true,
+          stickyAuth: true,
+          biometricOnly: true,
+        )
       );
     } on PlatformException catch (e) {
       print(e);

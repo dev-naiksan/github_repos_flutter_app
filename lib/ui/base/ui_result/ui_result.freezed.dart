@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'ui_result.dart';
 
@@ -24,8 +24,8 @@ mixin _$UiResult<T> {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(T data)? success,
-    TResult Function(ErrorType type, String? code)? failure,
+    TResult? Function(T data)? success,
+    TResult? Function(ErrorType type, String? code)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -43,8 +43,8 @@ mixin _$UiResult<T> {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(UiSuccess<T> value)? success,
-    TResult Function(UiFailure<T> value)? failure,
+    TResult? Function(UiSuccess<T> value)? success,
+    TResult? Function(UiFailure<T> value)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -60,42 +60,44 @@ mixin _$UiResult<T> {
 abstract class $UiResultCopyWith<T, $Res> {
   factory $UiResultCopyWith(
           UiResult<T> value, $Res Function(UiResult<T>) then) =
-      _$UiResultCopyWithImpl<T, $Res>;
+      _$UiResultCopyWithImpl<T, $Res, UiResult<T>>;
 }
 
 /// @nodoc
-class _$UiResultCopyWithImpl<T, $Res> implements $UiResultCopyWith<T, $Res> {
+class _$UiResultCopyWithImpl<T, $Res, $Val extends UiResult<T>>
+    implements $UiResultCopyWith<T, $Res> {
   _$UiResultCopyWithImpl(this._value, this._then);
 
-  final UiResult<T> _value;
   // ignore: unused_field
-  final $Res Function(UiResult<T>) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
-abstract class $UiSuccessCopyWith<T, $Res> {
-  factory $UiSuccessCopyWith(
-          UiSuccess<T> value, $Res Function(UiSuccess<T>) then) =
-      _$UiSuccessCopyWithImpl<T, $Res>;
+abstract class _$$UiSuccessImplCopyWith<T, $Res> {
+  factory _$$UiSuccessImplCopyWith(
+          _$UiSuccessImpl<T> value, $Res Function(_$UiSuccessImpl<T>) then) =
+      __$$UiSuccessImplCopyWithImpl<T, $Res>;
+  @useResult
   $Res call({T data});
 }
 
 /// @nodoc
-class _$UiSuccessCopyWithImpl<T, $Res> extends _$UiResultCopyWithImpl<T, $Res>
-    implements $UiSuccessCopyWith<T, $Res> {
-  _$UiSuccessCopyWithImpl(
-      UiSuccess<T> _value, $Res Function(UiSuccess<T>) _then)
-      : super(_value, (v) => _then(v as UiSuccess<T>));
+class __$$UiSuccessImplCopyWithImpl<T, $Res>
+    extends _$UiResultCopyWithImpl<T, $Res, _$UiSuccessImpl<T>>
+    implements _$$UiSuccessImplCopyWith<T, $Res> {
+  __$$UiSuccessImplCopyWithImpl(
+      _$UiSuccessImpl<T> _value, $Res Function(_$UiSuccessImpl<T>) _then)
+      : super(_value, _then);
 
-  @override
-  UiSuccess<T> get _value => super._value as UiSuccess<T>;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? data = freezed,
   }) {
-    return _then(UiSuccess<T>(
-      data == freezed
+    return _then(_$UiSuccessImpl<T>(
+      freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as T,
@@ -105,8 +107,8 @@ class _$UiSuccessCopyWithImpl<T, $Res> extends _$UiResultCopyWithImpl<T, $Res>
 
 /// @nodoc
 
-class _$UiSuccess<T> implements UiSuccess<T> {
-  const _$UiSuccess(this.data);
+class _$UiSuccessImpl<T> implements UiSuccess<T> {
+  const _$UiSuccessImpl(this.data);
 
   @override
   final T data;
@@ -120,7 +122,7 @@ class _$UiSuccess<T> implements UiSuccess<T> {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is UiSuccess<T> &&
+            other is _$UiSuccessImpl<T> &&
             const DeepCollectionEquality().equals(other.data, data));
   }
 
@@ -130,8 +132,9 @@ class _$UiSuccess<T> implements UiSuccess<T> {
 
   @JsonKey(ignore: true)
   @override
-  $UiSuccessCopyWith<T, UiSuccess<T>> get copyWith =>
-      _$UiSuccessCopyWithImpl<T, UiSuccess<T>>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$UiSuccessImplCopyWith<T, _$UiSuccessImpl<T>> get copyWith =>
+      __$$UiSuccessImplCopyWithImpl<T, _$UiSuccessImpl<T>>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -145,8 +148,8 @@ class _$UiSuccess<T> implements UiSuccess<T> {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(T data)? success,
-    TResult Function(ErrorType type, String? code)? failure,
+    TResult? Function(T data)? success,
+    TResult? Function(ErrorType type, String? code)? failure,
   }) {
     return success?.call(data);
   }
@@ -176,8 +179,8 @@ class _$UiSuccess<T> implements UiSuccess<T> {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(UiSuccess<T> value)? success,
-    TResult Function(UiFailure<T> value)? failure,
+    TResult? Function(UiSuccess<T> value)? success,
+    TResult? Function(UiFailure<T> value)? failure,
   }) {
     return success?.call(this);
   }
@@ -197,43 +200,43 @@ class _$UiSuccess<T> implements UiSuccess<T> {
 }
 
 abstract class UiSuccess<T> implements UiResult<T> {
-  const factory UiSuccess(final T data) = _$UiSuccess<T>;
+  const factory UiSuccess(final T data) = _$UiSuccessImpl<T>;
 
-  T get data => throw _privateConstructorUsedError;
+  T get data;
   @JsonKey(ignore: true)
-  $UiSuccessCopyWith<T, UiSuccess<T>> get copyWith =>
+  _$$UiSuccessImplCopyWith<T, _$UiSuccessImpl<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $UiFailureCopyWith<T, $Res> {
-  factory $UiFailureCopyWith(
-          UiFailure<T> value, $Res Function(UiFailure<T>) then) =
-      _$UiFailureCopyWithImpl<T, $Res>;
+abstract class _$$UiFailureImplCopyWith<T, $Res> {
+  factory _$$UiFailureImplCopyWith(
+          _$UiFailureImpl<T> value, $Res Function(_$UiFailureImpl<T>) then) =
+      __$$UiFailureImplCopyWithImpl<T, $Res>;
+  @useResult
   $Res call({ErrorType type, String? code});
 }
 
 /// @nodoc
-class _$UiFailureCopyWithImpl<T, $Res> extends _$UiResultCopyWithImpl<T, $Res>
-    implements $UiFailureCopyWith<T, $Res> {
-  _$UiFailureCopyWithImpl(
-      UiFailure<T> _value, $Res Function(UiFailure<T>) _then)
-      : super(_value, (v) => _then(v as UiFailure<T>));
+class __$$UiFailureImplCopyWithImpl<T, $Res>
+    extends _$UiResultCopyWithImpl<T, $Res, _$UiFailureImpl<T>>
+    implements _$$UiFailureImplCopyWith<T, $Res> {
+  __$$UiFailureImplCopyWithImpl(
+      _$UiFailureImpl<T> _value, $Res Function(_$UiFailureImpl<T>) _then)
+      : super(_value, _then);
 
-  @override
-  UiFailure<T> get _value => super._value as UiFailure<T>;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? type = freezed,
+    Object? type = null,
     Object? code = freezed,
   }) {
-    return _then(UiFailure<T>(
-      type == freezed
+    return _then(_$UiFailureImpl<T>(
+      null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as ErrorType,
-      code == freezed
+      freezed == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -243,8 +246,8 @@ class _$UiFailureCopyWithImpl<T, $Res> extends _$UiResultCopyWithImpl<T, $Res>
 
 /// @nodoc
 
-class _$UiFailure<T> implements UiFailure<T> {
-  const _$UiFailure(this.type, [this.code]);
+class _$UiFailureImpl<T> implements UiFailure<T> {
+  const _$UiFailureImpl(this.type, [this.code]);
 
   @override
   final ErrorType type;
@@ -260,21 +263,19 @@ class _$UiFailure<T> implements UiFailure<T> {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is UiFailure<T> &&
-            const DeepCollectionEquality().equals(other.type, type) &&
-            const DeepCollectionEquality().equals(other.code, code));
+            other is _$UiFailureImpl<T> &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.code, code) || other.code == code));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(type),
-      const DeepCollectionEquality().hash(code));
+  int get hashCode => Object.hash(runtimeType, type, code);
 
   @JsonKey(ignore: true)
   @override
-  $UiFailureCopyWith<T, UiFailure<T>> get copyWith =>
-      _$UiFailureCopyWithImpl<T, UiFailure<T>>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$UiFailureImplCopyWith<T, _$UiFailureImpl<T>> get copyWith =>
+      __$$UiFailureImplCopyWithImpl<T, _$UiFailureImpl<T>>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -288,8 +289,8 @@ class _$UiFailure<T> implements UiFailure<T> {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(T data)? success,
-    TResult Function(ErrorType type, String? code)? failure,
+    TResult? Function(T data)? success,
+    TResult? Function(ErrorType type, String? code)? failure,
   }) {
     return failure?.call(type, code);
   }
@@ -319,8 +320,8 @@ class _$UiFailure<T> implements UiFailure<T> {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(UiSuccess<T> value)? success,
-    TResult Function(UiFailure<T> value)? failure,
+    TResult? Function(UiSuccess<T> value)? success,
+    TResult? Function(UiFailure<T> value)? failure,
   }) {
     return failure?.call(this);
   }
@@ -341,11 +342,11 @@ class _$UiFailure<T> implements UiFailure<T> {
 
 abstract class UiFailure<T> implements UiResult<T> {
   const factory UiFailure(final ErrorType type, [final String? code]) =
-      _$UiFailure<T>;
+      _$UiFailureImpl<T>;
 
-  ErrorType get type => throw _privateConstructorUsedError;
-  String? get code => throw _privateConstructorUsedError;
+  ErrorType get type;
+  String? get code;
   @JsonKey(ignore: true)
-  $UiFailureCopyWith<T, UiFailure<T>> get copyWith =>
+  _$$UiFailureImplCopyWith<T, _$UiFailureImpl<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }

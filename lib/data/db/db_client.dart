@@ -1,8 +1,7 @@
 import 'dart:io';
-
 import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart' as foundation;
 import 'package:github_flutter_app/data/db/tables/repo.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -32,7 +31,7 @@ class DbClient extends _$DbClient {
           return m.createAll();
         },
         onUpgrade: (Migrator m, int from, int to) async {
-          debugPrint('MigrationStrategy: onUpgrade: from: $from: to: $to');
+          foundation.debugPrint('MigrationStrategy: onUpgrade: from: $from: to: $to');
 
           if (from <= 1) {
             // await m.addColumn(userEntity, userEntity.fieldName);

@@ -127,15 +127,18 @@ class StrokeButton extends StatelessWidget {
       width: isExpanded ? double.infinity : null,
       child: Opacity(
         opacity: isDisabled ? 0.5 : 1.0,
-        child: FlatButton(
-          disabledColor: Colors.grey,
-          padding: const EdgeInsets.all(12),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(24),
-            side: BorderSide(
-              width: 1,
-              color: color,
+        child: FilledButton(
+          style: ButtonStyle(
+            shape: MaterialStateProperty.all(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(24),
+                side: BorderSide(
+                  width: 1,
+                  color: color,
+                ),
+              ),
             ),
+            padding: MaterialStateProperty.all(const EdgeInsets.all(12)),
           ),
           clipBehavior: Clip.antiAliasWithSaveLayer,
           child: isLoading

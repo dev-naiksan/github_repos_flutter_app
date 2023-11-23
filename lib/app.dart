@@ -1,7 +1,4 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get_it/get_it.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -45,9 +42,7 @@ class AppState extends State<App> with WidgetsBindingObserver {
             brightness: Brightness.light,
             iconTheme: IconThemeData(color: AppColor.ICON),
             textTheme: textTheme,
-            appBarTheme: AppBarTheme(
-              textTheme: textTheme,
-            ),
+            appBarTheme: AppBarTheme(),
             tabBarTheme: TabBarTheme(
               labelStyle: textTheme.subtitle2,
               unselectedLabelStyle: textTheme.subtitle2,

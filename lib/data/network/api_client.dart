@@ -26,8 +26,8 @@ class ApiClient {
     dio = Dio();
     dio.options.baseUrl = GetIt.I.get<FlavorConfig>().baseUrl;
 
-    dio.options.connectTimeout = TimeOut.connectTimeout.inMilliseconds;
-    dio.options.receiveTimeout = TimeOut.connectTimeout.inMilliseconds;
+    dio.options.connectTimeout = TimeOut.connectTimeout;
+    dio.options.receiveTimeout = TimeOut.connectTimeout;
 
     dio.interceptors.add(
       InterceptorsWrapper(
@@ -106,19 +106,19 @@ class ApiClient {
 
   ApiError _getError(DioError e) {
     switch (e.type) {
-      case DioErrorType.connectTimeout:
-      case DioErrorType.sendTimeout:
-      case DioErrorType.receiveTimeout:
+      case DioExceptionType.connectionTimeout:
+      case DioExceptionType.sendTimeout:
+      case DioExceptionType.receiveTimeout:
         return ApiError(ErrorType.timeout);
         break;
-      case DioErrorType.response: //401, 404, 403
+      case DioExceptionType.badResponse: //401, 404, 403
         if (e.response?.statusCode == HttpStatus.unauthorized) {
           //GetIt.I.get<AppModel>().setSessionExpired();
         }
         final rawResponse = RawResponse.fromJson(e.response?.data);
         return ApiError(ErrorType.apiFailure,
             code: rawResponse.error?.code, message: rawResponse.error?.msg);
-      case DioErrorType.other:
+      case DioExceptionType.unknown:
         if (e.error is SocketException) {
           return ApiError(ErrorType.noConnection);
         }

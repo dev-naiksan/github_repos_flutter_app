@@ -2,10 +2,7 @@
 
 part of 'repo_dao.dart';
 
-// **************************************************************************
-// DaoGenerator
-// **************************************************************************
-
+// ignore_for_file: type=lint
 mixin _$RepoDaoMixin on DatabaseAccessor<DbClient> {
   $RepoEntityTable get repoEntity => attachedDatabase.repoEntity;
 }
