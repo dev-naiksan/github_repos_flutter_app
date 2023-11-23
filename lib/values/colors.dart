@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 
 class AppColor {
   static const int primaryColor = 0xFF009FFF;
@@ -28,7 +27,6 @@ class AppColor {
 }
 
 Color getColorFromHex(String hexColor) {
-  throwIf(hexColor == null, "Invalid color");
 
   hexColor = hexColor.toUpperCase().replaceAll("#", "");
   if (hexColor.length == 6) {
@@ -38,7 +36,5 @@ Color getColorFromHex(String hexColor) {
 }
 
 String getHexFromColor(Color color) {
-  throwIf(color == null, "Invalid color");
-
   return '#${color.value.toRadixString(16)}';
 }

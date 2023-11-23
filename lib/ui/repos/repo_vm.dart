@@ -1,8 +1,8 @@
-import 'package:get_it/get_it.dart';
 import 'package:github_flutter_app/data/network/util/base_response.dart';
 import 'package:github_flutter_app/data/network/util/error_util.dart';
 import 'package:github_flutter_app/data/repository/base_repository.dart';
 import 'package:github_flutter_app/data/repository/repo/repo_repository.dart';
+import 'package:github_flutter_app/data/repository/repo/repo_repository_impl.dart';
 import 'package:github_flutter_app/model/repo_model.dart';
 import 'package:github_flutter_app/ui/base/base_vm.dart';
 
@@ -26,7 +26,7 @@ class RepoVM extends BaseVM {
 
   List<Repo> get list => _list;
 
-  RepoRepository repository = GetIt.I.get<RepoRepository>();
+  RepoRepository repository = RepoRepositoryImpl();
 
   RepoVM() {
     fetchRepos();

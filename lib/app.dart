@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:github_flutter_app/route/route_generator.dart';
@@ -48,18 +47,13 @@ class AppState extends State<App> with WidgetsBindingObserver {
               unselectedLabelStyle: textTheme.subtitle2,
             ),
           ),
-          builder: (context, child) => FutureBuilder(
-            future: GetIt.I.allReady(),
-            builder: (BuildContext context, AsyncSnapshot snapshot) {
-              return FlavorBanner(
-                child: GestureDetector(
-                  child: child,
-                  onTap: () {
-                    FocusScope.of(context).requestFocus(new FocusNode());
-                  },
-                ),
-              );
-            },
+          builder: (context, child) => FlavorBanner(
+            child: GestureDetector(
+              child: child,
+              onTap: () {
+                FocusScope.of(context).requestFocus(new FocusNode());
+              },
+            ),
           ),
         );
       },

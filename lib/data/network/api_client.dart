@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart' as Foundation;
-import 'package:get_it/get_it.dart';
 
 import '../../flavor_config.dart';
 import 'api_config.dart';
@@ -24,7 +23,7 @@ class ApiClient {
 
   void _init() {
     dio = Dio();
-    dio.options.baseUrl = GetIt.I.get<FlavorConfig>().baseUrl;
+    dio.options.baseUrl = FlavorConfig.instance.baseUrl;
 
     dio.options.connectTimeout = TimeOut.connectTimeout;
     dio.options.receiveTimeout = TimeOut.connectTimeout;

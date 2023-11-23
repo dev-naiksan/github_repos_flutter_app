@@ -1,12 +1,12 @@
-import 'package:get_it/get_it.dart';
 import 'package:github_flutter_app/data/network/util/error_util.dart';
 import 'package:github_flutter_app/data/repository/auth/auth_repository.dart';
+import 'package:github_flutter_app/data/repository/auth/auth_repository_impl.dart';
 import 'package:github_flutter_app/ui/base/base_vm.dart';
 
 import '../base/ui_result/ui_result.dart';
 
 class AuthVM extends BaseVM {
-  final AuthRepository repository = GetIt.I.get<AuthRepository>();
+  final AuthRepository repository = AuthRepositoryImpl();
   bool _loading = false;
 
   bool get loading => _loading;

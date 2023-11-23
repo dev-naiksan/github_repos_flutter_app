@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 import 'package:github_flutter_app/data/repository/base_repository.dart';
 import 'package:github_flutter_app/model/base_model.dart';
 import 'package:github_flutter_app/utils/constants.dart';
@@ -35,7 +34,6 @@ abstract class BaseVM with ChangeNotifier {
 
 abstract class PaginatedSearchListVM<A extends ListModel,
     B extends BaseRepository> extends BaseVM {
-  final B repository = GetIt.I.get<B>();
 
   bool _isLoading = false;
   UiFailure? _failure;
