@@ -1,9 +1,10 @@
-import 'package:github_flutter_app/data/db/db_client.dart';
 import 'package:github_flutter_app/data/network/dto/repo_dto.dart';
 import 'package:github_flutter_app/model/repo_model.dart';
 
+import '../db/tables/repo.dart';
+
 class RepoMapper {
-  static Repo entityToModel(RepoEntityData data) {
+  static Repo entityToModel(RepoEntity data) {
     return Repo(
       data.id,
       data.name,
@@ -14,8 +15,8 @@ class RepoMapper {
     );
   }
 
-  static RepoEntityData modelToEntity(Repo model) {
-    return RepoEntityData(
+  static RepoEntity modelToEntity(Repo model) {
+    return RepoEntity(
       id: model.id,
       name: model.name,
       description: model.description,
@@ -36,8 +37,8 @@ class RepoMapper {
     );
   }
 
-  static RepoEntityData dtoToEntity(RepoDto dto) {
-    return RepoEntityData(
+  static RepoEntity dtoToEntity(RepoDto dto) {
+    return RepoEntity(
       id: dto.id,
       name: dto.name,
       description: dto.description,

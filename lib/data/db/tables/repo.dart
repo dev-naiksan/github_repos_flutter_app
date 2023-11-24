@@ -1,18 +1,30 @@
-import 'package:drift/drift.dart';
 
-class RepoEntity extends Table {
-  IntColumn get id => integer()();
+import 'package:hive/hive.dart';
+part 'repo.g.dart';
 
-  TextColumn get name => text()();
+const int _repoEntityId = 1;
 
-  TextColumn get description => text()();
+@HiveType(typeId: _repoEntityId)
+class RepoEntity {
+  RepoEntity({
+    required this.id,
+    required this.name,
+    required this.description,
+    required this.issues,
+    required this.watchers,
+    required this.language,
+  });
 
-  IntColumn get issues => integer()();
-
-  IntColumn get watchers => integer()();
-
-  TextColumn get language => text()();
-
-  @override
-  Set<Column> get primaryKey => {id};
+  @HiveField(0)
+  int id;
+  @HiveField(1)
+  String name;
+  @HiveField(2)
+  String description;
+  @HiveField(3)
+  int issues;
+  @HiveField(4)
+  int watchers;
+  @HiveField(5)
+  String language;
 }

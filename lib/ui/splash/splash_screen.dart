@@ -18,9 +18,9 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    SchedulerBinding.instance?.addPostFrameCallback((_) async {
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
       await Future.delayed(Duration(seconds: 1));
-      _authenticate();
+      _navigate();
     });
   }
 

@@ -57,8 +57,6 @@ class RepoVM extends BaseVM {
     }
   }
 
-  Stream<List<Repo>> get repoStream => repository.repoStream;
-
   @override
   void onNetworkAvailable(bool available) {}
 }

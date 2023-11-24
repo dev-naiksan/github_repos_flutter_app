@@ -114,9 +114,8 @@ class _RepoScreenState extends State<RepoScreen> {
           visible: model.isLoading && !model.isOver,
           child: Center(child: CircularProgressIndicator.adaptive()),
         ),
-        Visibility(
-          visible: model.failure != null,
-          child: Padding(
+        if (model.failure != null)
+          Padding(
             padding: const EdgeInsets.only(bottom: 24.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -131,7 +130,6 @@ class _RepoScreenState extends State<RepoScreen> {
               ],
             ),
           ),
-        ),
       ],
     );
   }

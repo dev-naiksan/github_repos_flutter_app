@@ -4,7 +4,6 @@ import 'package:github_flutter_app/ui/auth/auth_vm.dart';
 import 'package:github_flutter_app/ui/repos/repo_screen.dart';
 import 'package:github_flutter_app/ui/repos/repo_vm.dart';
 import 'package:github_flutter_app/ui/splash/splash_screen.dart';
-import 'package:github_flutter_app/ui/splash/splash_vm.dart';
 import 'package:provider/provider.dart';
 
 class RouteGenerator {
@@ -12,10 +11,7 @@ class RouteGenerator {
     switch (settings.name) {
       case SplashScreen.routeName:
         return MaterialPageRoute(
-            builder: (_) => ChangeNotifierProvider<SplashVM>(
-                  create: (_) => SplashVM(),
-                  child: SplashScreen(),
-                ));
+            builder: (_) => SplashScreen());
       case AuthScreen.routeName:
         return MaterialPageRoute(
             builder: (_) => ChangeNotifierProvider<AuthVM>(
